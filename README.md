@@ -1,2 +1,2 @@
 # portainer_stacks
-Contains all my Portainer stacks for centralilzed management and off-site storage
+Contains all my Portainer stacks for centralized management and off-site storage
