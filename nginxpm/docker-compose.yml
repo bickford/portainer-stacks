@@ -1,0 +1,46 @@
+version: "3"
+
+networks:
+   nginxpm-frontend:
+    external: true
+
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginxpm
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+      # Add any other Stream port you want to expose
+      # - '21:21' # FTP
+    networks:
+      - nginxpm-frontend
+    # Uncomment the next line if you uncomment anything in the section
+    # environment:
+      # Uncomment this if you want to change the location of
+      # the SQLite DB file within the container
+      # DB_SQLITE_FILE: "/data/database.sqlite"
+      # Uncomment this if IPv6 is not enabled on your host
+      # DISABLE_IPV6: 'true'
+    volumes:
+      - nginxpm-data:/data
+      - nginxpm-letsencrypt:/etc/letsencrypt
+    # The default docker-compose.yaml has the volues set up as bind mounts:
+    # - ./data:/data
+    # - ./letsencrypt:/etc/letsencrypt
+    # However, I'm using named volumes to keep it all managed by Docker. I don't think I have a specific use-case for accessing the files directly on the file-system
+
+# Below section added by me to allow re-using existing Docker volumes when recreating the container
+# NB: ALL BELOW should be commented-out when making a brand new Nginx build with no pre-existing data volumes
+# 'Pre-existing data config section'
+volumes:
+  nginx_data:
+    external: true
+    name: nginxpm-data
+  letsencrypt:
+    external: true
+    name: nginxpm-letsencrypt
+# End 'pre-existing data section'
