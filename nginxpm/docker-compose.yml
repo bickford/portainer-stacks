@@ -37,7 +37,7 @@ services:
 # NB: ALL BELOW should be commented-out when making a brand new Nginx build with no pre-existing data volumes
 # 'Pre-existing data config section'
 volumes:
-  nginx-data:
+  nginxpm-data:
     external: true
     name: nginxpm-data
   nginxpm-letsencrypt:
