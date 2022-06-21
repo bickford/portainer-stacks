@@ -7,7 +7,7 @@ networks:
 services:
   app:
     image: 'jc21/nginx-proxy-manager:latest'
-    container_name: nginx
+    container_name: nginxpm
     restart: unless-stopped
     ports:
       # These ports are in format <host-port>:<container-port>
@@ -17,7 +17,7 @@ services:
       # Add any other Stream port you want to expose
       # - '21:21' # FTP
     networks:
-      - nginx-frontend
+      - nginxpm-frontend
     # Uncomment the next line if you uncomment anything in the section
     # environment:
       # Uncomment this if you want to change the location of
@@ -26,8 +26,8 @@ services:
       # Uncomment this if IPv6 is not enabled on your host
       # DISABLE_IPV6: 'true'
     volumes:
-      - nginx_data:/data
-      - letsencrypt:/etc/letsencrypt
+      - nginxpm-data:/data
+      - nginxpm-letsencrypt:/etc/letsencrypt
     # The default docker-compose.yaml has the volues set up as bind mounts:
     # - ./data:/data
     # - ./letsencrypt:/etc/letsencrypt
@@ -39,8 +39,8 @@ services:
 volumes:
   nginx_data:
     external: true
-    name: nginx_data
+    name: nginxpm-data
   letsencrypt:
     external: true
-    name: letsencrypt
+    name: nginxpm-letsencrypt
 # End 'pre-existing data section'
