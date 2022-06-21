@@ -37,10 +37,10 @@ services:
 # NB: ALL BELOW should be commented-out when making a brand new Nginx build with no pre-existing data volumes
 # 'Pre-existing data config section'
 volumes:
-  nginx_data:
+  nginx-data:
     external: true
     name: nginxpm-data
-  letsencrypt:
+  nginxpm-letsencrypt:
     external: true
     name: nginxpm-letsencrypt
 # End 'pre-existing data section'
