@@ -1,0 +1,29 @@
+version: "2.1"
+
+services:
+  duplicati:
+    image: linuxserver/duplicati
+    container_name: duplicati
+    environment:
+      # The user and process run as ROOT to allow backup of all files without any difficulties (eg LetsEncrypt certs)
+      - PUID=0
+      - PGID=0
+      - TZ=Australia/Perth
+      # Optional Duplicati CLI arguments:
+      #- CLI_ARGS=
+    volumes:
+    # Duplicati persistent volume for its configuration data:
+      - duplicati-app-data:/config
+      - var/backups:/backups
+      - </path/to/source>:/source
+    ports:
+      - 8200:8200
+    restart: unless-stopped
+
+volumes:
+  duplicati-app-data:
+    external: true
+    name: duplicati-app-data
+#  letsencrypt:
+#    external: true
+#    name: letsencrypt
