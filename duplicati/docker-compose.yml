@@ -24,6 +24,9 @@ services:
       - nginxpm-letsencrypt:/source/nginxpm-letsencrypt
     ports:
       - 8200:8200
+    # Add to the pre-existing NGINX Proxy Manager network
+    networks:
+      - nginxpm-frontend
     restart: unless-stopped
 
 volumes:
@@ -37,3 +40,8 @@ volumes:
   nginxpm-letsencrypt:
     external: true
     name: nginxpm-letsencrypt
+
+networks:
+  # Frontend network for NGINX Proxy Manager to allow proxy protection of the site
+  nginxpm-frontend:
+    external: true
