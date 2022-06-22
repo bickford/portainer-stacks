@@ -14,9 +14,9 @@ services:
     volumes:
       # Duplicati persistent volume for its configuration data:
       - duplicati-app-data:/config
-      # Backup location for tar.gz (etc) files to be stored - did not use Ubuntu system default of 'var/backups' as this already has files in it
+      # Backup location for tar.gz (etc) files to be stored - did not use Ubuntu system default of 'var/backups' as this already has files in it, bind mount:
       - var/duplicati-backups:/backups
-      # Backup sources - root dir:
+      # Backup sources - root dir, another bind mount:
       - var/duplicati-sources:/source
       # Backup sources - Nginx PM data:
       - nginxpm-data:/source/nginxpm-data
