@@ -8,15 +8,16 @@ volumes:
     external: true
 
 networks:
-  nginx-frontend:
-  # Frontend nextwork also pre-exists, set as external also
+  # Add to the pre-existing NGINX Proxy Manager network
+  nginxpm-frontend:
     external: true
+  # Create backend network for the database to be isolated
   nextcloud-backend:
     name: nextcloud-backend
 
 services:
 
-  #NB: Reminder to set the MYSQL password environmental variables during deployment! Test.
+  #NB: Reminder to set the MYSQL password environmental variables during deployment!
 
   nextcloud-app:
     image: nextcloud
@@ -32,7 +33,7 @@ services:
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=nextcloud-db
     networks:
-      - nginx-frontend
+      - nginxpm-frontend
       - nextcloud-backend
 
   nextcloud-db:
