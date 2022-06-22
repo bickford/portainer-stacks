@@ -12,18 +12,28 @@ services:
       # Optional Duplicati CLI arguments:
       #- CLI_ARGS=
     volumes:
-    # Duplicati persistent volume for its configuration data:
+      # Duplicati persistent volume for its configuration data:
       - duplicati-app-data:/config
-      - var/backups:/backups
-      - </path/to/source>:/source
+      # Backup location for tar.gz (etc) files to be stored - did not use Ubuntu system default of 'var/backups' as this already has files in it
+      - var/duplicati-backups:/backups
+      # Backup sources - root dir:
+      - var/duplicati-sources:/source
+      # Backup sources - Nginx PM data:
+      - nginxpm-data:/source/nginxpm-data
+      # Backup sources - Nginx LetsEncrypt data:
+      - nginxpm-letsencrypt:/source/nginxpm-letsencrypt
     ports:
       - 8200:8200
     restart: unless-stopped
 
 volumes:
+  # Each folder referenced in the Services config (above) for Duplicati must be sourced here:
   duplicati-app-data:
     external: true
     name: duplicati-app-data
-#  letsencrypt:
-#    external: true
-#    name: letsencrypt
+  nginxpm-data:
+    external: true
+    name: nginxpm-data
+  nginxpm-letsencrypt:
+    external: true
+    name: nginxpm-letsencrypt
