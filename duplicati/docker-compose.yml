@@ -14,14 +14,16 @@ services:
     volumes:
       # Duplicati persistent volume for its configuration data:
       - duplicati-app-data:/config
-      # Backup location for tar.gz (etc) files to be stored - did not use Ubuntu system default of 'var/backups' as this already has files in it, bind mount:
-      - /var/duplicati-backups:/backups
+      # Backup destination location for tar.gz (etc) files to be stored - this is a CIFS/SMB network share that maps to NAS, bind mount:
+      - /media/duplicati-backups:/backups
       # Backup sources - root dir, another bind mount:
       - /var/duplicati-sources:/source
-      # Backup sources - Nginx PM data:
+      # Backup sources
+      # Nginx volumes:
       - nginxpm-data:/source/nginxpm-data
-      # Backup sources - Nginx LetsEncrypt data:
       - nginxpm-letsencrypt:/source/nginxpm-letsencrypt
+      # NextCloud volumes:
+      - 
     ports:
       - 8200:8200
     # Add to the pre-existing NGINX Proxy Manager network
