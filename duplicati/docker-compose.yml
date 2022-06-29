@@ -19,7 +19,7 @@ services:
       - /media/duplicati-backups:/backups-destination
       # Backup sources
       # Database backup dumps folder (dumped daily by the database backup script):
-      /var/backups-databases:/backups-source/backups-databases
+      - /var/backups-databases:/backups-source/backups-databases
       # Duplicati's own config data (just another mapping of the same volume listed above, for simplicity of backups):
       - duplicati-app-data:/backups-source/duplicati-app-data
       # Nginx volumes (read-only):
