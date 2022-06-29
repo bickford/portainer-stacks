@@ -8,6 +8,7 @@ services:
       # The user and process run as ROOT to allow backup of all files without any difficulties (eg LetsEncrypt certs)
       - PUID=0
       - PGID=0
+      #NB: Default PUID and PGID is 1000
       - TZ=Australia/Perth
       # Optional Duplicati CLI arguments:
       #- CLI_ARGS=
@@ -19,11 +20,16 @@ services:
       # Backup sources - root dir, another bind mount:
       - /var/duplicati-sources:/source
       # Backup sources
-      # Nginx volumes:
-      - nginxpm-data:/source/nginxpm-data
-      - nginxpm-letsencrypt:/source/nginxpm-letsencrypt
-      # NextCloud volumes:
-      - 
+      # Duplicati's own config data (just another mapping of the same volume listed above, for simplicity of backups):
+      - duplicati-app-data:/source/duplicati-app-data
+      # Nginx volumes (read-only):
+      - nginxpm-data:/source/nginxpm-data:ro
+      - nginxpm-letsencrypt:/source/nginxpm-letsencrypt:ro
+      # NextCloud volumes (read-only):
+      - nextcloud-app-data:/source/nextcloud-app-data:ro
+      - nextcloud-db-data:/source/nextcloud-db-data:ro
+      # Portainer volume (read-only):
+      - portainer_data:/source/portainer_data:ro
     ports:
       - 8200:8200
     # Add to the pre-existing NGINX Proxy Manager network
@@ -32,16 +38,26 @@ services:
     restart: unless-stopped
 
 volumes:
-  # Each folder referenced in the Services config (above) for Duplicati must be sourced here:
+  # Duplicati's app data volume of course:
   duplicati-app-data:
     external: true
     name: duplicati-app-data
+  # Additionally, each folder referenced in the Services config (above) for Duplicati must be sourced here:
   nginxpm-data:
     external: true
     name: nginxpm-data
   nginxpm-letsencrypt:
     external: true
     name: nginxpm-letsencrypt
+  nextcloud-app-data:
+    external: true
+    name: nextcloud-app-data
+  nextcloud-db-data:
+    external: true
+    name: nextcloud-db-data
+  portainer_data:
+    external: true
+    name: portainer_data
 
 networks:
   # Frontend network for NGINX Proxy Manager to allow proxy protection of the site
