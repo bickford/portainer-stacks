@@ -17,8 +17,6 @@ services:
       - duplicati-app-data:/config
       # Backup destination location for tar.gz (etc) files to be stored - this is a CIFS/SMB network share that maps to NAS, bind mount:
       - /media/duplicati-backups:/backups
-      # Backup sources - root dir, another bind mount:
-      - /var/duplicati-sources:/source
       # Backup sources
       # Duplicati's own config data (just another mapping of the same volume listed above, for simplicity of backups):
       - duplicati-app-data:/source/duplicati-app-data
