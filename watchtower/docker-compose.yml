@@ -5,5 +5,8 @@ services:
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
+    environment:
+      - WATCHTOWER_MONITOR_ONLY=true
+      - TZ=Australia/Perth
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

@@ -4,6 +4,6 @@ Contains Docker config for my Watchtower build, uses Docker data directly only (
 -------
 
 Source: https://hub.docker.com/r/containrrr/watchtower
-Source code: https://github.com/NginxProxyManager/nginx-proxy-manager
+Source code: https://github.com/containrrr/watchtower/
 Official homepage: https://containrrr.dev/watchtower/
-Tutorial: 
+Tutorial: https://www.youtube.com/watch?v=5lP_pdjcVMo
