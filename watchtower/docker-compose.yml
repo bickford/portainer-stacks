@@ -6,9 +6,9 @@ services:
     image: containrrr/watchtower
     container_name: watchtower
     environment:
-      #- WATCHTOWER_MONITOR_ONLY=true
-      - WATCHTOWER_POLL_INTERVAL=300
-      # Temporarily set to 5 minutes for testing
+      # Polling interval set to monthly
+      - WATCHTOWER_POLL_INTERVAL=2592000
+      # All containers will be ignored unless they have a Watchtower ENABLE Label (which will only be Portainer)
       - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_NOTIFICATIONS_HOSTNAME=Loki
       - WATCHTOWER_NOTIFICATIONS=email
