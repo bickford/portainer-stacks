@@ -16,8 +16,10 @@ services:
       - "LOG_LEVEL=info"
       - "LOG_JSON=false"
       - "DIUN_WATCH_WORKERS=20"
-      - "DIUN_WATCH_SCHEDULE=0 */5 * * *"
+      - "DIUN_WATCH_SCHEDULE=* 5 * * * *"
       - "DIUN_PROVIDERS_DOCKER=true"
+      # Set to watch all Docker containers (this will watch all containers unless they have a 'diun.enable=false' label)
+      - "DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT=true"
       - "DIUN_NOTIF_MAIL_SSL=false"
       # Note that each of the below variables must be set in Portainer environment variables. Eg 'email_from:someaddess@mailhost.com'
       - "DIUN_NOTIF_MAIL_HOST=${email_server}"
