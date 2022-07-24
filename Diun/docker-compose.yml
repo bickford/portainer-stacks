@@ -7,7 +7,7 @@ services:
     container_name: diun
     command: serve
     volumes:
-      - "./data:/data"
+      - "diun-app-data:/data"
       - "/var/run/docker.sock:/var/run/docker.sock"
     environment:
       - "TZ=Australia/Perth"
