@@ -7,7 +7,9 @@ services:
     container_name: diun
     command: serve
     volumes:
+      # Diun persistent volume for its configuration data:
       - "diun-app-data:/data"
+      # Docker internal data:
       - "/var/run/docker.sock:/var/run/docker.sock"
     environment:
       - "TZ=Australia/Perth"
@@ -28,3 +30,9 @@ services:
     labels:
       - "diun.enable=true"
     restart: always
+
+volumes:
+  # Diun's app data volume referenced above:
+  diun-app-data:
+    external: true
+    name: diun-app-data
