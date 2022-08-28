@@ -30,6 +30,7 @@ services:
       - "DIUN_NOTIF_MAIL_FROM=${email_from}"
       - "DIUN_NOTIF_MAIL_TO=${email_to}"
     labels:
+      # NB: this is a stock config setting, it's actually redundant in my config per above: because I've set Diun to watch ALL containers except those labelled 'diun.enable=false'
       - "diun.enable=true"
     restart: always
 
