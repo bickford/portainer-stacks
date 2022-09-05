@@ -35,6 +35,8 @@ services:
       - MYSQL_HOST=nextcloud-db
       - OVERWRITEPROTOCOL=https
       - REDIS_HOST=nextcloud-redis
+    #NB: This variable 'NEXTCLOUD_EXT_HOSTNAME' must be set in Portainer environment variables during deployment!
+    hostname: ${NEXTCLOUD_EXT_HOSTNAME}
     depends_on:
       - nextcloud-db
       - nextcloud-redis
