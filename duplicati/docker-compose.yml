@@ -16,8 +16,8 @@ services:
       # Duplicati persistent volume for its configuration data:
       - duplicati-app-data:/config
       # Backup destination location for tar.gz (etc) files to be stored - this is a CIFS/SMB network share that maps to NAS, bind mount:
-      - /media/duplicati-backups:/backups-destination
-      # Backup sources
+      - /mnt/behemoth/Duplicati:/backups-destination
+      # BACKUP SOURCES:
       # Database backup dumps folder (dumped daily by the database backup script):
       - /var/backups-databases:/backups-source/backups-databases
       # Duplicati's own config data (just another mapping of the same volume listed above, for simplicity of backups):
@@ -29,7 +29,9 @@ services:
       - nextcloud-app-data:/backups-source/nextcloud-app-data:ro
       - nextcloud-db-data:/backups-source/nextcloud-db-data:ro
       # Portainer volume (read-only):
-      - portainer_data:/backups-source/portainer_data:ro
+      - portainer-app-data:/backups-source/portainer-app-data:ro
+      # Diun volume (read-only):
+      - diun-app-data:/backups-source/diun-app-data:ro
     ports:
       - 8200:8200
     # Add to the pre-existing NGINX Proxy Manager network
@@ -55,9 +57,12 @@ volumes:
   nextcloud-db-data:
     external: true
     name: nextcloud-db-data
-  portainer_data:
+  portainer-app-data:
     external: true
-    name: portainer_data
+    name: portainer-app-data
+  diun-app-data:
+    external: true
+    name: diun-app-data
 
 networks:
   # Frontend network for NGINX Proxy Manager to allow proxy protection of the site
