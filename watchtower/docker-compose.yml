@@ -14,7 +14,7 @@ services:
       - WATCHTOWER_NOTIFICATIONS=email
       - WATCHTOWER_NOTIFICATION_EMAIL_DELAY=10
       - TZ=Australia/Perth
-      # Note that each of the below variables must be set in Portainer environment variables. Eg 'email_from:someaddess@mailhost.com'
+      # Note that each of the below variables must be set in Portainer environment variables. Eg 'email_from:someaddress@mailhost.com'
       - WATCHTOWER_NOTIFICATION_EMAIL_FROM=${email_from}
       - WATCHTOWER_NOTIFICATION_EMAIL_TO=${email_to}
       - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=${email_server}
