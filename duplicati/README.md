@@ -1,7 +1,7 @@
 # Duplicati stack
 Contains config for my Duplicati build, using external data volumes and networks (pre-existing)
 
-
+Set to update automatically by Watchtower on a two-weekly schedule.
 
 -------
 

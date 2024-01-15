@@ -32,6 +32,7 @@ services:
     labels:
       # NB: this is a stock config setting, it's actually redundant in my config per above: because I've set Diun to watch ALL containers except those labelled 'diun.enable=false'
       - "diun.enable=true"
+      - "com.centurylinklabs.watchtower.enable=true"
     restart: always
 
 volumes:

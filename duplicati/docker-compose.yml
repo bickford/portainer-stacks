@@ -32,6 +32,9 @@ services:
       - portainer-app-data:/backups-source/portainer-app-data:ro
       # Diun volume (read-only):
       - diun-app-data:/backups-source/diun-app-data:ro
+    labels:
+      # Set to update automatically via Watchtower with below label
+      - "com.centurylinklabs.watchtower.enable=true"
     ports:
       - 8200:8200
     # Add to the pre-existing NGINX Proxy Manager network
