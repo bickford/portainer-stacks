@@ -6,8 +6,6 @@ services:
     image: containrrr/watchtower
     container_name: watchtower
     environment:
-      # Polling interval set to monthly
-      - WATCHTOWER_POLL_INTERVAL=2592000
       # All containers will be ignored unless they have a Watchtower ENABLE Label (which will only be Portainer)
       - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_NOTIFICATIONS_HOSTNAME=Loki
@@ -21,5 +19,7 @@ services:
       - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=${email_port}
       - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=${email_user}
       - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=${email_pass}
+      # Polling interval in seconds (NB: my standard of 'monthly' equates to 2592000)
+      - WATCHTOWER_POLL_INTERVAL=${poll_interval}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
