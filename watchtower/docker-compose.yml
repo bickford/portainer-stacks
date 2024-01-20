@@ -6,7 +6,7 @@ services:
     image: containrrr/watchtower
     container_name: watchtower
     environment:
-      # All containers will be ignored unless they have a Watchtower ENABLE Label (which will only be Portainer)
+      # All containers will be ignored unless they have a Watchtower ENABLE Label (currently Watchtower itself, Portainer, diun, and Duplicati)
       - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_NOTIFICATIONS_HOSTNAME=Loki
       - WATCHTOWER_NOTIFICATIONS=email
@@ -23,3 +23,6 @@ services:
       - WATCHTOWER_POLL_INTERVAL=${poll_interval}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      # Set to update itself with below label
+      - "com.centurylinklabs.watchtower.enable=true"
