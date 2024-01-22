@@ -16,3 +16,15 @@ services:
       - ${AMPACHE_MEDIA_SHARE}:/media:ro
       # Ampache persistent volume for its database data (default is ./data/mysql:/var/lib/mysql):
       - ampache-db-data:/var/lib/mysql
+
+volumes:
+  # Ampache's persistent volumes referenced above:
+  ampache-app-data:
+    external: true
+    name: ampache-app-data
+  ampache-log-data:
+    external: true
+    name: ampache-log-data
+  ampache-db-data:
+    external: true
+    name: ampache-db-data
