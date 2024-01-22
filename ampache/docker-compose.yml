@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     ports:
       # My Docker deployment already uses port 80 so I've set an unused port
-      - 80:8042
+      - 8042:80
     volumes:
       # Ampache persistent volume for its configuration data (default is ./data/config:/var/www/config):
       - ampache-app-data:/var/www/config
