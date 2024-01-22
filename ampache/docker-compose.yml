@@ -8,8 +8,11 @@ services:
     ports:
       - 80:80
     volumes:
+      # Ampache persistent volume for its configuration data (default is ./data/config:/var/www/config):
       - ampache-app-data:/var/www/config
+      # Ampache persistent volume for its logging data (default is ./data/log:/var/log/ampache):
       - ampache-log-data:/var/log/ampache
-      # Media volume - this is a SMB network share that maps to NAS, bind mount (read-only):
-      - /mnt/behemoth/Data-Music-FLAC:/media:ro
+      # Media volume - this is a SMB network share that maps to NAS, bind mount (read-only), I've set it as a variable for privacy:
+      - ${AMPACHE_MEDIA_SHARE}:/media:ro
+      # Ampache persistent volume for its database data (default is ./data/mysql:/var/lib/mysql):
       - ampache-db-data:/var/lib/mysql
