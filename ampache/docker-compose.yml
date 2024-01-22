@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  ampache:
+    image: ampache/ampache:latest
+    container_name: ampache
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ampache-app-data:/var/www/config
+      - ampache-log-data:/var/log/ampache
+      # Media volume - this is a SMB network share that maps to NAS, bind mount (read-only):
+      - /mnt/behemoth/Data-Music-FLAC:/media:ro
+      - ampache-db-data:/var/lib/mysql
