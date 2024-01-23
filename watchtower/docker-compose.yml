@@ -24,8 +24,8 @@ services:
       - WATCHTOWER_POLL_INTERVAL=${poll_interval}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      # Added the /etc/timezone mount to avoid having to set environment variable manually. This means if the server TZ changes it should automatically flow-through to Watchtower
-      - /etc/timezone:/etc/timezone:ro
+      # Added the /etc/localtime mount to avoid having to set environment variable manually. This means if the server TZ changes it should automatically flow-through to Watchtower
+      - /etc/localtime:/etc/localtime:ro
     labels:
       # Set to update itself with below label
       - "com.centurylinklabs.watchtower.enable=true"
