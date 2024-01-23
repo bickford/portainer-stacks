@@ -4,14 +4,15 @@ version: "3"
 services:
   watchtower:
     image: containrrr/watchtower
+    # Set to restart always, important for when Watchtower updates itself!
+    restart: always
     container_name: watchtower
     environment:
-      # All containers will be ignored unless they have a Watchtower ENABLE Label (currently Watchtower itself, Portainer, diun, and Duplicati)
+      # This variable sets Watchtower to ignore all containers UNLESS they have a Watchtower ENABLE Label (currently Watchtower itself, Portainer, diun, and Duplicati)
       - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_NOTIFICATIONS_HOSTNAME=Loki
       - WATCHTOWER_NOTIFICATIONS=email
       - WATCHTOWER_NOTIFICATION_EMAIL_DELAY=10
-      - TZ=Australia/Perth
       # Note that each of the below variables must be set in Portainer environment variables. Eg 'email_from:someaddress@mailhost.com'
       - WATCHTOWER_NOTIFICATION_EMAIL_FROM=${email_from}
       - WATCHTOWER_NOTIFICATION_EMAIL_TO=${email_to}
@@ -23,6 +24,8 @@ services:
       - WATCHTOWER_POLL_INTERVAL=${poll_interval}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      # Added the /etc/timezone mount to avoid having to set environment variable manually. This means if the server TZ changes it should automatically flow-through to Watchtower
+      - /etc/timezone:/etc/timezone:ro
     labels:
       # Set to update itself with below label
       - "com.centurylinklabs.watchtower.enable=true"
