@@ -3,6 +3,7 @@ version: '3'
 services:
   navidrome:
     image: deluan/navidrome:latest
+    container_name: navidrome
     ports:
       - 4533:4533
     restart: unless-stopped
@@ -11,7 +12,18 @@ services:
       ND_SCANSCHEDULE: 1h
       ND_LOGLEVEL: info  
       ND_BASEURL: ""
+      # Change the cover art fetch priority to get embedded art first, then from external databases, then from cover/folder/front files
       ND_COVERARTPRIORITY: embedded, external, cover.*, folder.*, front.*
+      # Enable admins to be able to change the transcoding options
+      ND_ENABLETRANSCODINGCONFIG: true
+      # Enable external service integrations (Spotify, LastFM)
+      ND_ENABLEEXTERNALSERVICES: true
+      # Configure user API keys for LastFM (via environment variables for privacy)
+      ND_LASTFM_APIKEY: ${NAVIDROME_LASTFM_APIKEY}
+      ND_LASTFM_SECRET: ${NAVIDROME_LASTFM_SECRET}
+      # Configure user API keys for Spotify (via environment variables for privacy)
+      ND_SPOTIFY_ID: ${NAVIDROME_SPOTIFY_APIKEY}
+      ND_SPOTIFY_SECRET: ${NAVIDROME_SPOTIFY_SECRET}
     volumes:
       # Navidrome persistent volume for its configuration data (primarily its database and cache):
       - navidrome-app-data:/data

@@ -2,7 +2,8 @@
 Contains Docker config for my Navidrome build.
 
 My configuration uses a persistent volume for the Navidrome app&db data; as well as a mapped SMB drive for my media.
-It's otherwise more or less the same as the default example Navidrome docker-compose.yml.
+It also enables LastFM and Spotify integration, with environmental variables used to protect private information.
+It's based on the default example Navidrome docker-compose.yml from the installation tutorial URL below.
 
 -------
 
