@@ -24,11 +24,16 @@ services:
       # Configure user API keys for Spotify (via environment variables for privacy)
       ND_SPOTIFY_ID: ${NAVIDROME_SPOTIFY_APIKEY}
       ND_SPOTIFY_SECRET: ${NAVIDROME_SPOTIFY_SECRET}
+      # Disable downloads of files
+      ND_ENABLEDOWNLOADS: false
     volumes:
       # Navidrome persistent volume for its configuration data (primarily its database and cache):
       - navidrome-app-data:/data
       # Media volume - this is a SMB network share that maps to NAS, bind mount (read-only), I've set it as a variable for privacy:
       - ${NAVIDROME_MEDIA_SHARE}:/music:ro
+     labels:
+      # Set to update automatically via Watchtower with below label
+      - "com.centurylinklabs.watchtower.enable=true"
 
 volumes:
   # Navidrome's persistent volumes referenced above:
