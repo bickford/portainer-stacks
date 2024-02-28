@@ -31,7 +31,7 @@ services:
       - navidrome-app-data:/data
       # Media volume - this is a SMB network share that maps to NAS, bind mount (read-only), I've set it as a variable for privacy:
       - ${NAVIDROME_MEDIA_SHARE}:/music:ro
-     labels:
+    labels:
       # Set to update automatically via Watchtower with below label
       - "com.centurylinklabs.watchtower.enable=true"
 
