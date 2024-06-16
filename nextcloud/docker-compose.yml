@@ -20,7 +20,7 @@ services:
   #NB: Reminder to set the MYSQL password environmental variables during deployment (as noted below)!
 
   nextcloud-app:
-    image: nextcloud:stable-apache
+    image: nextcloud:24.0.12-apache
     container_name: nextcloud-app
     restart: always
     ports:
@@ -72,7 +72,7 @@ services:
   #This second container is required to run the background cron job
   nextcloud-cron:
     container_name: nextcloud-cron  
-    image: nextcloud:stable-apache
+    image: nextcloud:24.0.12-apache
     restart: always
     volumes:
       - nextcloud-app-data:/var/www/html
