@@ -56,7 +56,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${NEXTCLOUD_DB_MYSQL_ROOT_PASSWORD}
       - MYSQL_PASSWORD=${NEXTCLOUD_APP_MYSQL_PASSWORD}
       - MYSQL_DATABASE=nextcloud
-      - MARIADB_AUTO_UPGRADE=1
+      - MYSQL_USER=nextcloud
     networks:
       - nextcloud-backend
 
