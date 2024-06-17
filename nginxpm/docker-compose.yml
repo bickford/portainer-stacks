@@ -32,10 +32,11 @@ services:
     # - ./data:/data
     # - ./letsencrypt:/etc/letsencrypt
     # However, I'm using named volumes to keep it all managed by Docker. I don't think I have a specific use-case for accessing the files directly on the file-system
+    labels:
+      # Set to update automatically via Watchtower with below label
+      - "com.centurylinklabs.watchtower.enable=true"
 
-# Below section added by me to allow re-using existing Docker volumes when recreating the container
-# NB: ALL BELOW should be commented-out when making a brand new Nginx build with no pre-existing data volumes
-# 'Pre-existing data config section'
+# Persistent data volumes per the named-volumes notes above
 volumes:
   nginxpm-data:
     external: true
@@ -43,4 +44,4 @@ volumes:
   nginxpm-letsencrypt:
     external: true
     name: nginxpm-letsencrypt
-# End 'pre-existing data section'
+    
