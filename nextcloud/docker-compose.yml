@@ -20,7 +20,7 @@ services:
   #NB: Reminder to set the MYSQL password environmental variables during deployment (as noted below)!
 
   nextcloud-app:
-    image: nextcloud:27.1.10-apache
+    image: nextcloud:production-apache
     container_name: nextcloud-app
     restart: always
     ports:
@@ -43,6 +43,9 @@ services:
     networks:
       - nginxpm-frontend
       - nextcloud-backend
+    labels:
+      # Set to update automatically via Watchtower with below label
+      - "com.centurylinklabs.watchtower.enable=true"
 
   nextcloud-db:
     image: mariadb
@@ -59,6 +62,9 @@ services:
       - MYSQL_USER=nextcloud
     networks:
       - nextcloud-backend
+    labels:
+      # Set to update automatically via Watchtower with below label
+      - "com.centurylinklabs.watchtower.enable=true"
 
   #Redis is an object cache server used as a DB cache for improved performance
   nextcloud-redis:
@@ -68,11 +74,14 @@ services:
     networks:
       - nginxpm-frontend
       - nextcloud-backend
+    labels:
+      # Set to update automatically via Watchtower with below label
+      - "com.centurylinklabs.watchtower.enable=true"
 
   #This second container is required to run the background cron job
   nextcloud-cron:
     container_name: nextcloud-cron  
-    image: nextcloud:27.1.10-apache
+    image: nextcloud:production-apache
     restart: always
     volumes:
       - nextcloud-app-data:/var/www/html
@@ -83,4 +92,7 @@ services:
     networks:
       - nginxpm-frontend
       - nextcloud-backend
+    labels:
+      # Set to update automatically via Watchtower with below label
+      - "com.centurylinklabs.watchtower.enable=true"
 
