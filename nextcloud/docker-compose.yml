@@ -20,7 +20,7 @@ services:
   #NB: Reminder to set the MYSQL password environmental variables during deployment (as noted below)!
 
   nextcloud-app:
-    image: nextcloud:26.0.13-apache
+    image: nextcloud:27.1.10-apache
     container_name: nextcloud-app
     restart: always
     ports:
@@ -63,7 +63,7 @@ services:
   #Redis is an object cache server used as a DB cache for improved performance
   nextcloud-redis:
     container_name: nextcloud-redis
-    image: redis:alpine
+    image: redis:latest
     restart: always
     networks:
       - nginxpm-frontend
@@ -72,7 +72,7 @@ services:
   #This second container is required to run the background cron job
   nextcloud-cron:
     container_name: nextcloud-cron  
-    image: nextcloud:26.0.13-apache
+    image: nextcloud:27.1.10-apache
     restart: always
     volumes:
       - nextcloud-app-data:/var/www/html
