@@ -18,8 +18,8 @@ services:
       # - '21:21' # FTP
     networks:
       - nginxpm-frontend
-  #      aliases:
-  #        - bingbong
+    #   aliases:
+    #     - bingbong
     # Uncomment the next line if you uncomment anything in the section
     # environment:
       # Uncomment this if you want to change the location of
