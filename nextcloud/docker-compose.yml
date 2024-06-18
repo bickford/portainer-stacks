@@ -46,6 +46,8 @@ services:
     labels:
       # Set to update automatically via Watchtower with below label
       - "com.centurylinklabs.watchtower.enable=true"
+    extra_hosts:
+      - "${NEXTCLOUD_EXT_HOSTNAME}=172.19.0.6"
 
   nextcloud-db:
     image: mariadb
