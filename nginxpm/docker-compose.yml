@@ -17,7 +17,7 @@ services:
       # Add any other Stream port you want to expose
       # - '21:21' # FTP
     networks:
-      nginxpm-frontend:
+      - nginxpm-frontend
   #      aliases:
   #        - bingbong
     # Uncomment the next line if you uncomment anything in the section
