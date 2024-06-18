@@ -17,10 +17,10 @@ services:
       # Add any other Stream port you want to expose
       # - '21:21' # FTP
     networks:
-      - nginxpm-frontend:
-          aliases:
-            # 'NGINX_PROXY_ALIAS1' environment variable must be set to server external DNS hostname in Portainer prior to use
-            - ${NGINX_PROXY_ALIAS1}
+      nginxpm-frontend:
+        aliases:
+          - ${NGINX_PROXY_ALIAS1}
+          # 'NGINX_PROXY_ALIAS1' environment variable must be set to server external DNS hostname in Portainer prior to use
     # Uncomment the next line if you uncomment anything in the section
     # environment:
       # Uncomment this if you want to change the location of
