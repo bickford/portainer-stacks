@@ -18,13 +18,17 @@ services:
       # - '21:21' # FTP
     networks:
       - nginxpm-frontend
+      proxy:
+        aliases:
+          #NB: This variable 'NGINX_PROXY_ALIAS1' must be set in Portainer environment variables during deployment!
+          - ${NGINX_PROXY_ALIAS1}
     # Uncomment the next line if you uncomment anything in the section
     # environment:
       # Uncomment this if you want to change the location of
       # the SQLite DB file within the container
       # DB_SQLITE_FILE: "/data/database.sqlite"
       # Uncomment this if IPv6 is not enabled on your host
-      # DISABLE_IPV6: 'true'
+      # DISABLE_IPV6: 'true
     volumes:
       - nginxpm-data:/data
       - nginxpm-letsencrypt:/etc/letsencrypt
