@@ -17,9 +17,9 @@ services:
       # Add any other Stream port you want to expose
       # - '21:21' # FTP
     networks:
-      alias
-        - {$NGINX_PROXY_ALIAS1}
       - nginxpm-frontend
+        alias
+          - {$NGINX_PROXY_ALIAS1}
     # Uncomment the next line if you uncomment anything in the section
     # environment:
       # Uncomment this if you want to change the location of
