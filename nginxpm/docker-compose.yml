@@ -3,6 +3,9 @@ version: "3"
 networks:
   nginxpm-frontend:
     external: true
+    aliases:
+      # 'NGINX_PROXY_ALIAS1' environment variable must be set to server external DNS hostname in Portainer prior to use
+      - {$NGINX_PROXY_ALIAS1}
 
 services:
   app:
@@ -18,8 +21,6 @@ services:
       # - '21:21' # FTP
     networks:
       - nginxpm-frontend
-        aliases
-          - {$NGINX_PROXY_ALIAS1}
     # Uncomment the next line if you uncomment anything in the section
     # environment:
       # Uncomment this if you want to change the location of
