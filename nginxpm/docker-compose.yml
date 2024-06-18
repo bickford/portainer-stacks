@@ -1,11 +1,8 @@
 version: "3"
 
 networks:
-   nginxpm-frontend:
+  nginxpm-frontend:
     external: true
-    aliases:
-      #NB: This variable 'NGINX_PROXY_ALIAS1' must be set in Portainer environment variables during deployment!
-      - ${NGINX_PROXY_ALIAS1}
 
 services:
   app:
