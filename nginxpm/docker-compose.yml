@@ -2,7 +2,7 @@ version: "3"
 
 networks:
   nginxpm-frontend:
-    external:true
+    external: true
 
 services:
   app:
@@ -17,9 +17,9 @@ services:
       # Add any other Stream port you want to expose
       # - '21:21' # FTP
     networks:
-      - nginxpm-frontend
-    #   aliases:
-    #     - bingbong
+      nginxpm-frontend:
+        aliases:
+          - bingbong
     # Uncomment the next line if you uncomment anything in the section
     # environment:
       # Uncomment this if you want to change the location of
