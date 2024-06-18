@@ -1,7 +1,7 @@
 version: "3"
 
 networks:
-  nginxpm-frontend:
+   nginxpm-frontend:
     external: true
 
 services:
@@ -17,6 +17,8 @@ services:
       # Add any other Stream port you want to expose
       # - '21:21' # FTP
     networks:
+      alias
+        - {$NGINX_PROXY_ALIAS1}
       - nginxpm-frontend
     # Uncomment the next line if you uncomment anything in the section
     # environment:
@@ -24,7 +26,7 @@ services:
       # the SQLite DB file within the container
       # DB_SQLITE_FILE: "/data/database.sqlite"
       # Uncomment this if IPv6 is not enabled on your host
-      # DISABLE_IPV6: 'true
+      # DISABLE_IPV6: 'true'
     volumes:
       - nginxpm-data:/data
       - nginxpm-letsencrypt:/etc/letsencrypt
