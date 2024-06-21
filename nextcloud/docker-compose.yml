@@ -47,10 +47,10 @@ services:
       # Set to update automatically via Watchtower with below label
       - "com.centurylinklabs.watchtower.enable=true"
     extra_hosts:
-      - "foobar=172.19.0.6"
+      - ${NEXTCLOUD_HOSTS1}
 
   nextcloud-db:
-    image: mariadb
+    image: mariadb:lts
     container_name: nextcloud-db
     restart: always
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
@@ -97,4 +97,3 @@ services:
     labels:
       # Set to update automatically via Watchtower with below label
       - "com.centurylinklabs.watchtower.enable=true"
-

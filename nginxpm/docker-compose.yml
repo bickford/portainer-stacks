@@ -18,16 +18,12 @@ services:
       # - '21:21' # FTP
     networks:
       nginxpm-frontend:
-        aliases:
-          - ${NGINX_PROXY_ALIAS1}
-          # 'NGINX_PROXY_ALIAS1' environment variable must be set to server external DNS hostname in Portainer prior to use
+        ipv4_address: 172.19.0.10
     # Uncomment the next line if you uncomment anything in the section
     # environment:
       # Uncomment this if you want to change the location of
       # the SQLite DB file within the container
       # DB_SQLITE_FILE: "/data/database.sqlite"
-      # Uncomment this if IPv6 is not enabled on your host
-      # DISABLE_IPV6: 'true'
     volumes:
       - nginxpm-data:/data
       - nginxpm-letsencrypt:/etc/letsencrypt
@@ -47,4 +43,3 @@ volumes:
   nginxpm-letsencrypt:
     external: true
     name: nginxpm-letsencrypt
-    
