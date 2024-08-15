@@ -6,6 +6,8 @@ volumes:
     external: true
   nextcloud-db-data:
     external: true
+  nextcloud-redis-data:
+    external: true
 
 networks:
   # Add to the pre-existing NGINX Proxy Manager network
@@ -34,6 +36,7 @@ services:
       - MYSQL_HOST=nextcloud-db
       - OVERWRITEPROTOCOL=https
       - REDIS_HOST=nextcloud-redis
+      - REDIS_HOST_PASSWORD=${NEXTCLOUD_REDIS_PASSWORD}
     #NB: Variable 'NEXTCLOUD_EXT_HOSTNAME' should be set to external FQDN hostname
     hostname: ${NEXTCLOUD_EXT_HOSTNAME}
     depends_on:
@@ -71,7 +74,10 @@ services:
   nextcloud-redis:
     container_name: nextcloud-redis
     image: redis:latest
+    command: redis-server --requirepass ${NEXTCLOUD_REDIS_PASSWORD}
     restart: always
+    volumes:
+      - nextcloud-redis-data:/data
     networks:
       - nginxpm-frontend
       - nextcloud-backend
