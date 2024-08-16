@@ -17,7 +17,12 @@ services:
       - duplicati-app-data:/config
       # Backup destination location for tar.gz (etc) files to be stored - this is a CIFS/SMB network share that maps to NAS, bind mount:
       - /mnt/behemoth/Duplicati:/backups-destination
-      # BACKUP SOURCES:
+      # Sharing the local scripts folder to access the pre and post backup scripts on Loki
+      - /usr/local/bin:/loki-scripts
+      # System mounts to allow Duplicati to stop and start containers with scripts:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      # *** BACKUP SOURCES ***:
       # Database backup dumps folder (dumped daily by the database backup script):
       - /var/backups-databases:/backups-source/backups-databases
       # Duplicati's own config data (just another mapping of the same volume listed above, for simplicity of backups):
