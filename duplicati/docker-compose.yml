@@ -38,7 +38,7 @@ services:
       - ampache-db-data:/backups-source/ampache-db-data:ro
       - ampache-log-data:/backups-source/ampache-log-data:ro
       # Navidrome volume (read-only):
-      - navidrome-app-data:/backups-source/navidrome-app-dataa:ro
+      - navidrome-app-data:/backups-source/navidrome-app-data:ro
     labels:
       # Set to update automatically via Watchtower with below label
       - "com.centurylinklabs.watchtower.enable=true"
