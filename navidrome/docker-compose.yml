@@ -8,8 +8,10 @@ services:
       - 4533:4533
     restart: unless-stopped
     environment:
-      # Config option customizations. Currently scan schedule is hourly, log level is set to 'info', cover art looks for embedded art first.
-      ND_SCANSCHEDULE: 1h
+      # Config option customizations:
+      # Scan schedule is to 10 minutes (default 1 minute), uses cron formatting. '0' disables automatic scans.
+      ND_SCANNER_SCHEDULE: "*/10 * * * *"
+      # Log level set to 'info'
       ND_LOGLEVEL: info  
       ND_BASEURL: ""
       # Change the cover art fetch priority to get embedded art first, then from external databases, then from cover/folder/front files
