@@ -31,8 +31,13 @@ services:
     volumes:
       # Navidrome persistent volume for its configuration data (primarily its database and cache):
       - navidrome-app-data:/data
-      # Media volume - this is a SMB network share that maps to NAS, bind mount (read-only), I've set it as a variable for privacy:
+      # Media volumes - these are SMB network shares that maps to the NAS, bind mount (read-only), I've set them as variables for privacy.
+      # NB: The First '/music' volume entry forms the default media library or all users:
       - ${NAVIDROME_MEDIA_SHARE}:/music:ro
+      - ${NAVIDROME_MEDIA_SHARE2}:/music2:ro
+      - ${NAVIDROME_MEDIA_SHARE3}:/music3:ro
+      - ${NAVIDROME_MEDIA_SHARE4}:/music4:ro
+
     labels:
       # Set to update automatically via Watchtower with below label
       - "com.centurylinklabs.watchtower.enable=true"
