@@ -21,10 +21,9 @@ volumes:
     external: true
     name: portainer-app-data
 
-# Portainer does not need a named network to run, however a named network can be used to allow containers access to Portainer's network if desired. Should be external if named.
+# Portainer does not need a named network to run, however a named network can be used to allow containers access to Portainer's network if desired
 networks:
   default:
-    external: true
-    name: portainer-network
+    name: portainer_network
 
 # NB: this docker-compose file is based on the official docs here: https://docs.portainer.io/start/install/server/docker/linux
