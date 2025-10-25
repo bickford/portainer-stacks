@@ -1,0 +1,29 @@
+services:
+  portainer:
+    container_name: portainer
+    # Using Portainer Business Edition (Enterprise Edition) license with 3 free nodes, LTS for the long-term servicing branch with most mature code
+    image: portainer/portainer-ee:lts
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-app-data:/data
+    ports:
+      - 9443:9443
+      # Remove if you do not intend to use Edge Agents (NB: this is for clusters or remote cloud management, not relevant to me)
+      #- 8000:8000
+    labels:
+      # Set to update automatically via Watchtower with below label
+      - "com.centurylinklabs.watchtower.enable=true"
+
+# Persistent data volume per the named-volume above
+volumes:
+  portainer_data:
+    name: portainer-app-data
+    external: true
+
+# Portainer does not need a named network to run, however a named network can be used to allow containers access to Portainer's network if desired
+networks:
+  default:
+    name: portainer_default
+
+# NB: this docker-compose file is based on the official docs here: https://docs.portainer.io/start/install/server/docker/linux
