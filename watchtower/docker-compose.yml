@@ -3,7 +3,7 @@ version: "3"
 
 services:
   watchtower:
-    image: containrrr/watchtower
+    image: nickfedor/watchtower
     # Set to restart always, important for when Watchtower updates itself!
     restart: always
     container_name: watchtower
