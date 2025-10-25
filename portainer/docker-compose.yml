@@ -17,8 +17,8 @@ services:
 
 # Persistent data volume per the named-volume above
 volumes:
-  external: true
   portainer-app-data:
+    external: true
     name: portainer-app-data
 
 # Portainer does not need a named network to run, however a named network can be used to allow containers access to Portainer's network if desired
